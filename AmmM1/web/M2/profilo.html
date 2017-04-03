@@ -13,41 +13,83 @@
 </head>
 <body>
 
-
-<div id="divHead">
-<nav>
-<ol>
-	<li><a href="descrizione.html">Descrizione</a></li>
-	<li><a href="login.html">Login</a></li>
-</ol>
-</nav>
-
-</div>
-
-<div id="divBody">
 <header>
-<h1>Profilo</h1>
+	<div class="float_right">
+		<div>
+			<div>
+				Marco Meloni
+			</div>
+			<div>
+				<a href="bacheca.html">Logout</a>
+			</div>
+		</div>
+	</div>	
+	<div id="div1" class="header_writing">
+		<a href="descrizione.html">Nerdbook</a>
+	</div>
+	<div id="current" class="header_writing div_right">
+		Profilo
+	</div>
+	<div class="header_writing div_right">
+		<a href="bacheca.html">Bacheca</a>
+	</div>
 </header>
 
-<form action="profilo.html" method="post">
-                    <div>
-							<label for="nome">Nome</label>
-							<input type="text" name="nome" value="" id="nome">
-							<label for="cognome">Cognome</label>
-							<input type="text" name="cognome" value="" id="cognome">
-							<label for="propic">URL Immagine del profilo</label>
-							<input type="text" name="propic" value="" id="propic" size="150">
-							<label for="frase">Frase di presentazione</label>
-							<textarea name="frase" id="frase"></textarea>
-							<label for="data">Data di nascita</label>
-							<input type="date" name="data" value="1990-01-01" id="data">
-							<label for="password">Password</label>
-							<input type="password" name="password" value="" id="password">
-							<label for="passwordconf">Conferma Password</label>
-							<input type="password" name="passwordconf" value="" id="passwordconf">
-						<button type="submit">Registrati</button>
-                    </div>
-                </form>
+<div class="sidebar">
+	<div id="persone">
+		<p class="side_titolo">Persone</p>
+		<p class="amico">Pinco Pallino</p>
+		<p class="amico">Riccardo Rossi</p>
+		<p class="amico">Mario Bianchi</p>
+	</div>
+	
+	<div id="gruppi">
+		<p class="side_titolo">Gruppi</p>
+		<p id="mongolfieristi" class="amico">Molgolfieristi</p>
+		<p id="ritardatari" class="amico">Ritardatari</p>
+	</div>
+</div>
+
+<div id="propic">
+	<img>
+</div>
+
+<div id="div_body">
+<form action="profilo.html" method="post" id="signup">
+	<div id="label_div">
+		<div class="row">
+			<label for="nome">Nome</label>
+			<input type="text" name="nome" value="" id="nome">
+		</div>
+		<div class="row">
+			<label for="cognome">Cognome</label>
+			<input type="text" name="cognome" value="" id="cognome">
+		</div>
+		<div class="row">
+			<label for="propic">URL Immagine del profilo</label>
+			<input type="text" name="profile_imm" value="" id="profile_imm">
+		</div>
+		<div class="row">
+			<label for="frase">Frase di presentazione</label>
+			<input type="text" name="frase" value="" id="frase">
+		</div>
+		<div class="row">
+			<label for="data">Data di nascita</label>
+			<input type="date" name="data" value="1990-01-01" id="data">
+		</div>
+		<div class="row">
+			<label for="password">Password</label>
+			<input type="password" name="password" value="" id="password">
+		</div>
+		<div class="row">
+			<label for="passwordconf">Conferma Password</label>
+			<input type="password" name="passwordconf" value="" id="passwordconf">
+		</div>
+		<div>
+			<button>REGISTRATI</button>
+		</div>
+	</div>
+</form>
 
 </div>
 
