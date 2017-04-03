@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<title>Profilo</title>
+<meta charset="UTF-8">
+<meta name="keywords" content="social, nerd, nerdbook, videogames, anime, profilo">
+<meta name="author" content="Marco Meloni">
+<meta name="description" content="Profilo di Nerdbook">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+
+</head>
+<body>
+
+
+<div id="divHead">
+<nav>
+<ol>
+	<li><a href="descrizione.html">Descrizione</a></li>
+	<li><a href="login.html">Login</a></li>
+</ol>
+</nav>
+
+</div>
+
+<div id="divBody">
+<header>
+<h1>Profilo</h1>
+</header>
+
+<form action="profilo.html" method="post">
+                    <div>
+							<label for="nome">Nome</label>
+							<input type="text" name="nome" value="" id="nome">
+							<label for="cognome">Cognome</label>
+							<input type="text" name="cognome" value="" id="cognome">
+							<label for="propic">URL Immagine del profilo</label>
+							<input type="text" name="propic" value="" id="propic" size="150">
+							<label for="frase">Frase di presentazione</label>
+							<textarea name="frase" id="frase"></textarea>
+							<label for="data">Data di nascita</label>
+							<input type="date" name="data" value="1990-01-01" id="data">
+							<label for="password">Password</label>
+							<input type="password" name="password" value="" id="password">
+							<label for="passwordconf">Conferma Password</label>
+							<input type="password" name="passwordconf" value="" id="passwordconf">
+						<button type="submit">Registrati</button>
+                    </div>
+                </form>
+
+</div>
+
+</body>
+</html>
