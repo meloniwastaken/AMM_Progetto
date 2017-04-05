@@ -9,12 +9,6 @@ h1 {
 	color: red;
 }
 
-button {
-	font-size: 14pt;
-	height: 30pt;
-	width: 804px;
-}
-
 ol {
 	list-style-type: square;
 }
@@ -25,37 +19,7 @@ header {
 	margin-right: -8px;
 	margin-top: -8px;
 	margin-left: -8px;
-	height: 50px;
 	font-weight: bold;
-}
-
-#header_login {
-	width: 262px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -200px;
-	margin-left: -140px;
-}
-	
-#login_title {
-	display:inline-block;
-	margin-left: 30px;
-}
-
-#label_div input, #label_div label, #login_form label, #login_form input {
-	width: 400px;
-	display: table-cell;
-	font-size: 14pt;
-	margin-bottom: 10px;
-}
-
-#div1 {
-	text-align: center;
-	display: inline-block;
-	width: 200px;
-	height: 44px;
-	line-height: 44px;
 }
 
 #current {
@@ -63,11 +27,6 @@ header {
 	color: red;
 	text-decoration: underline;
 	font-weight: bold;
-}
-
-#div_body {
-	margin-top: 20px;
-	margin-left: 220px;
 }
 
 #stato {
@@ -85,39 +44,6 @@ header {
 	width: 56px;
 	height: 44px;
 	display: inline-block;
-}
-
-.sidebar {
-	float: left;
-	width: 200px;
-	margin-left: -8px; /*attacca la barra alla finestra*/
-	border-style:solid;
-	border-width: 3px;
-	border-color: white;
-	background-color: #600000;
-}
-
-.div_right {
-	text-align:center;
-	display: inline-block;
-	width:150px;
-	line-height: 44px;
-}
-
-.header_writing {
-	border-width: 3px;
-	border-color: white;
-	border-style: solid;
-	font-size: 18pt;
-}
-
-.float_right {
-	float: right;
-	display:inline-block;
-	font-size: 12pt;
-	text-align:center;
-	width: 150px;
-	margin-top: 7px;
 }
 
 .side_titolo {
@@ -140,13 +66,6 @@ header {
 	background-color: #600000;
 }
 
-.propic {
-	width: 50px;
-	height: 50px;
-	display: inline-block;
-	float:left;
-}
-
 .name {
 	margin-left: 10px;
 	margin-bottom: 10px;
@@ -154,15 +73,6 @@ header {
 	display: inline-block;
 	height: 50px;
 	line-height:50px;
-}
-
-#login_form {
-	background-color: #800000;
-	width: 804px;
-	margin-left: -402px;
-	margin-top: -90px;
-	padding: 15px 15px 15px 15px;
-	
 }
 
 .row {
@@ -174,25 +84,10 @@ header {
 	width: 250px;
 }
 
-#propic {
-	margin-left: 10px;
-	margin-top: 10px;
-	float:left;
-}
-
-#propic img {
-	width: 150px;
-	height: 150px;
-}
-
 .center {
 	position:absolute;
 	top: 50%;
 	left:50%;
-}
-
-.input_row {
-	width:146px;
 }
 
 input[type=text]:focus, input[type=password]:focus{
@@ -221,3 +116,400 @@ a:hover {
 a:active {
 	color: red;
 }
+
+@media only screen and (min-width: 1024px) {
+		
+	header {
+		height: 50px;
+	}
+	
+	button {
+		font-size: 14pt;
+		height: 30pt;
+		width: 100%;
+		max-width: 804px;
+	}
+	
+	#propic {
+		margin-left: 10px;
+		margin-top: 10px;
+		float:left;
+	}
+
+	#propic img {
+		width: 150px;
+		height: 150px;
+	}
+	
+	#label_div input, #label_div label, #login_form label, #login_form input {
+		width: 400px;
+		display: table-cell;
+		font-size: 14pt;
+		margin-bottom: 10px;
+	}
+	
+	.sidebar {
+		float: left;
+		width: 200px;
+		margin-left: -8px; /*attacca la barra alla finestra*/
+		border-style:solid;
+		border-width: 3px;
+		border-color: white;
+		background-color: #600000;
+	}
+	
+	#div_body {
+		margin-top: 20px;
+		margin-left: 220px;
+	}
+	
+	#div1 {
+		text-align: center;
+		display: inline-block;
+		width: 200px;
+		height: 44px;
+		line-height: 44px;
+	}
+	
+	.div_right {
+		text-align:center;
+		display: inline-block;
+		width:150px;
+		line-height: 44px;
+	}
+	
+	.float_right {
+		float: right;
+		display:inline-block;
+		font-size: 12pt;
+		text-align:center;
+		width: 150px;
+		margin-top: 7px;
+	}
+	
+	.header_writing {
+		border-width: 3px;
+		border-color: white;
+		border-style: solid;
+		font-size: 18pt;
+	}
+	
+	.propic {
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		float:left;
+	}
+	
+	.post img {
+		max-height: 500px;
+		max-width:  500px;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.input_row {
+		width:146px;
+	}
+	
+	#login_form {
+		background-color: #800000;
+		width: 804px;
+		margin-left: -417px;
+		margin-top: -90px;
+		padding: 15px 15px 15px 15px;
+	}
+	
+	#header_login {
+		width: 262px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -200px;
+		margin-left: -140px;
+	}
+		
+	#login_title {
+		display:inline-block;
+		margin-left: 30px;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1024px) {
+	
+	header {
+		height: 50px;
+	}
+	
+	div#label_div button {
+		font-size: 14pt;
+		height: 30pt;
+		width: 100%;
+		max-width: 284px;
+		min-width: 232px;
+	}
+	
+	div#login_form button {
+		font-size: 14pt;
+		height: 30pt;
+		width: 100%;
+		max-width: 480px;
+	}
+	
+	#propic {
+		margin-top: 10px;
+		margin-left: 220px;
+	}
+
+	#propic img {
+		width: 150px;
+		height: 150px;
+	}
+	
+	
+	#label_div {
+		margin-left: -150px;
+		width: 100%;
+	}
+	
+	div#label_div input, div#label_div label {
+		width: 140px;
+		display: table-cell;
+		font-size: 12pt;
+		margin-bottom: 10px;
+	}
+	
+	div#login_form input, div#login_form label {
+		width: 240px;
+		display: table-cell;
+		font-size: 12pt;
+		margin-bottom: 10px;
+	}
+	
+	.sidebar {
+		float: left;
+		width: 200px;
+		margin-left: -8px; /*attacca la barra alla finestra*/
+		border-style:solid;
+		border-width: 3px;
+		border-color: white;
+		background-color: #600000;
+	}
+	
+	#div1 {
+		text-align: center;
+		display: inline-block;
+		width: 120px;
+		height: 44px;
+		line-height: 44px;
+	}
+	
+	.div_right {
+		text-align:center;
+		display: inline-block;
+		width: 120px;
+		line-height: 44px;
+	}
+	
+	#div_body {
+		margin-top: 20px;
+		margin-left: 220px;
+	}
+	
+	.float_right {
+		float: right;
+		display:inline-block;
+		font-size: 12pt;
+		text-align:center;
+		width: 100px;
+		margin-top: 7px;
+	}
+	
+	.post img {
+		max-height: 500px;
+		max-width:  500px;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.header_writing {
+		border-width: 3px;
+		border-color: white;
+		border-style: solid;
+		font-size: 18pt;
+	}
+	
+	.propic {
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		float:left;
+	}
+
+	
+	#login_form {
+		background-color: #800000;
+		width: 480px;
+		margin-left: -255px;
+		margin-top: -90px;
+		padding: 15px 15px 15px 15px;
+	}
+	
+	#header_login {
+		width: 262px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -200px;
+		margin-left: -140px;
+	}
+		
+	#login_title {
+		display:inline-block;
+		margin-left: 30px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	
+	header {
+		height: 146px;
+	}
+	
+	.sidebar {
+		margin-top: 50px;
+		border-style:solid;
+		border-width: 3px;
+		border-color: white;
+		background-color: #600000;
+		}
+		
+	.float_right {
+		font-size: 12pt;
+		text-align:center;
+		width: 100%;
+		border-style: solid;
+		border-width: 3px;
+		border-color: white;
+	}
+		
+	.div_right {
+		background-color: #600000;
+		text-align:center;
+		width: 100%;
+		line-height: 44px;
+	}
+	
+	#div1 {
+		background-color: #600000;
+		text-align: center;
+		width: 100%;
+		height: 44px;
+		line-height: 44px;
+	}
+	
+	.header_writing {
+		border-width: 3px;
+		border-color: white;
+		border-style: solid;
+		font-size: 14pt;
+	}
+	
+	#div_body {
+		margin-top: 30px;
+	}
+	
+	#stato {
+		margin-left: auto;
+	}
+	
+	.post img {
+		max-height: 200px;
+		max-width: 200px;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.propic {
+		width: 50px;
+		height: 50px;
+		display: inline-block;
+		float:left;
+	}
+	
+	#propic {
+		margin-top: 10px;
+		width: 100%;
+	}
+
+	#propic img {
+		display: block;
+		margin: auto;
+		width: 150px;
+		height: 150px;
+	}
+	
+	#label_div {
+		margin-left: -150px;
+	}
+	
+	#label_div input, #label_div label {
+		width: 140px;
+		display: table-cell;
+		font-size: 12pt;
+		margin-bottom: 10px;
+	}
+	
+	div#login_form input, div#login_form label {
+		width: 150px;
+		display: table-cell;
+		font-size: 12pt;
+		margin-bottom: 10px;
+	}
+	
+	#login_form {
+		background-color: #800000;
+		width: 300px;
+		margin-left: -165px;
+		margin-top: -90px;
+		padding: 15px 15px 15px 15px;
+	}
+	
+	#header_login {
+		width: 262px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -200px;
+		margin-left: -140px;
+	}
+		
+	#login_title {
+		display:inline-block;
+		margin-left: 30px;
+	}
+	
+	div#label_div button {
+		font-size: 14pt;
+		height: 30pt;
+		width: 100%;
+		max-width: 284px;
+		min-width: 232px;
+	}
+	
+	div#login_form button {
+		font-size: 14pt;
+		height: 30pt;
+		width: 100%;
+		max-width: 480px;
+	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
