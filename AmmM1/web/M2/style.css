@@ -5,6 +5,18 @@ body {
 
 h1 {
 	font-size: 32pt;
+	font-weight: bold;
+	color: red;
+}
+
+h2 {
+	font-size: 26pt;
+	font-weight: bold;
+	color: red;
+}
+
+h3 {
+	font-size: 22pt;
 	font-weight: normal;
 	color: red;
 }
@@ -20,6 +32,18 @@ header {
 	margin-top: -8px;
 	margin-left: -8px;
 	font-weight: bold;
+	height: 50px;
+}
+
+#propic {
+	margin-top: 10px;
+	width:100px;
+	height: 100px;
+}
+
+#login {
+	margin-top: 10px;
+	width: 250px;
 }
 
 #current {
@@ -34,16 +58,59 @@ header {
 	margin-left: -18px;
 	margin-bottom: 10px;
 	font-size: 14pt;
-	border-style: solid;
-	border-width: 3px;
-	border-color: white;
 	background-color: #600000;
 }
 
-.logo {
-	width: 56px;
+#signup {
+	margin-left: 150px;
+}
+
+#login {
+	margin-top: 10px;
+	width: 250px;
+}
+
+#label_div input, #label_div label, #login_form label, #login_form input {
+	display: table-cell;
+	font-size: 12pt;
+	margin-bottom: 10px;
+}
+
+#div_body {
+	margin-top: 20px;
+	margin-left: 220px;
+}
+
+#div1 {
+	text-align: center;
 	height: 44px;
+	line-height: 44px;
+	background-color: #600000;
+}
+
+#header_login {
+	width: 262px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -140px;
+}
+	
+#login_title {
+	display:inline-block;
+	margin-left: 30px;}
+
+#sidebar {
+	background-color: #600000;
+}	
+	
+.logo {
+	width: 50px;
+	height: 50px;
 	display: inline-block;
+	float: left;
+	margin-right: 20px;
 }
 
 .side_titolo {
@@ -58,11 +125,7 @@ header {
 }
 
 .post {
-	border-style: solid;
-	border-width: 3px;
-	border-color: white;
 	margin-bottom: 15px;
-	background-color: darkgrey;
 	background-color: #600000;
 }
 
@@ -79,9 +142,8 @@ header {
 	display: table-row;
 }
 
-#login {
-	margin-top: 10px;
-	width: 250px;
+.cell {
+	display: table-cell;
 }
 
 .center {
@@ -90,13 +152,38 @@ header {
 	left:50%;
 }
 
+.white_border {
+	border-style:solid;
+	border-width: 3px;
+	border-color: white;
+}
+
+.div_right {
+	background-color: #600000;
+	text-align: center;
+	line-height: 44px;
+}
+
+.float_right {
+	background-color: #600000;
+	font-size: 12pt;
+	text-align: center;
+}
+
+.header_writing {
+	font-size: 18pt;
+}
+
+.propic {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	float:left;
+}
+
 input[type=text]:focus, input[type=password]:focus{
 	width: 250px;
 	background-color: lightgrey;
-}
-
-#signup {
-	margin-left: 150px;
 }
 
 a:link {
@@ -119,9 +206,9 @@ a:active {
 
 @media only screen and (min-width: 1024px) {
 		
-	header {
+	/*header {
 		height: 50px;
-	}
+	}*/
 	
 	button {
 		font-size: 14pt;
@@ -132,75 +219,37 @@ a:active {
 	
 	#propic {
 		margin-left: 10px;
-		margin-top: 10px;
 		float:left;
-	}
-
-	#propic img {
-		width: 150px;
-		height: 150px;
 	}
 	
 	#label_div input, #label_div label, #login_form label, #login_form input {
 		width: 400px;
-		display: table-cell;
 		font-size: 14pt;
-		margin-bottom: 10px;
 	}
 	
-	.sidebar {
+	#sidebar {
 		float: left;
 		width: 200px;
 		margin-left: -8px; /*attacca la barra alla finestra*/
-		border-style:solid;
-		border-width: 3px;
-		border-color: white;
-		background-color: #600000;
-	}
-	
-	#div_body {
-		margin-top: 20px;
-		margin-left: 220px;
 	}
 	
 	#div1 {
-		text-align: center;
 		display: inline-block;
 		width: 200px;
-		height: 44px;
-		line-height: 44px;
 	}
 	
 	.div_right {
-		text-align:center;
 		display: inline-block;
 		width:150px;
-		line-height: 44px;
 	}
 	
 	.float_right {
 		float: right;
 		display:inline-block;
-		font-size: 12pt;
-		text-align:center;
 		width: 150px;
 		margin-top: 7px;
 	}
-	
-	.header_writing {
-		border-width: 3px;
-		border-color: white;
-		border-style: solid;
-		font-size: 18pt;
-	}
-	
-	.propic {
-		width: 50px;
-		height: 50px;
-		display: inline-block;
-		float:left;
-	}
-	
+
 	.post img {
 		max-height: 500px;
 		max-width:  500px;
@@ -219,29 +268,15 @@ a:active {
 		margin-top: -90px;
 		padding: 15px 15px 15px 15px;
 	}
-	
-	#header_login {
-		width: 262px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-top: -200px;
-		margin-left: -140px;
-	}
-		
-	#login_title {
-		display:inline-block;
-		margin-left: 30px;
-	}
 }
 
 @media only screen and (min-width: 480px) and (max-width: 1024px) {
 	
-	header {
+	/*header {
 		height: 50px;
-	}
+	}*/
 	
-	div#label_div button {
+	#label_div button {
 		font-size: 14pt;
 		height: 30pt;
 		width: 100%;
@@ -249,7 +284,7 @@ a:active {
 		min-width: 232px;
 	}
 	
-	div#login_form button {
+	#login_form button {
 		font-size: 14pt;
 		height: 30pt;
 		width: 100%;
@@ -257,70 +292,40 @@ a:active {
 	}
 	
 	#propic {
-		margin-top: 10px;
-		margin-left: 220px;
+		margin-left: 10px;
 	}
-
-	#propic img {
-		width: 150px;
-		height: 150px;
-	}
-	
 	
 	#label_div {
-		margin-left: -150px;
-		width: 100%;
+		margin-left: -160px;
 	}
 	
-	div#label_div input, div#label_div label {
+	#label_div input, #label_div label {
 		width: 140px;
-		display: table-cell;
-		font-size: 12pt;
-		margin-bottom: 10px;
 	}
 	
-	div#login_form input, div#login_form label {
+	#login_form input, #login_form label {
 		width: 240px;
-		display: table-cell;
-		font-size: 12pt;
-		margin-bottom: 10px;
 	}
 	
-	.sidebar {
+	#sidebar {
 		float: left;
 		width: 200px;
 		margin-left: -8px; /*attacca la barra alla finestra*/
-		border-style:solid;
-		border-width: 3px;
-		border-color: white;
-		background-color: #600000;
 	}
 	
 	#div1 {
-		text-align: center;
 		display: inline-block;
 		width: 120px;
-		height: 44px;
-		line-height: 44px;
 	}
 	
 	.div_right {
-		text-align:center;
 		display: inline-block;
 		width: 120px;
-		line-height: 44px;
-	}
-	
-	#div_body {
-		margin-top: 20px;
-		margin-left: 220px;
 	}
 	
 	.float_right {
 		float: right;
 		display:inline-block;
-		font-size: 12pt;
-		text-align:center;
 		width: 100px;
 		margin-top: 7px;
 	}
@@ -332,21 +337,6 @@ a:active {
 		height: 100%;
 	}
 	
-	.header_writing {
-		border-width: 3px;
-		border-color: white;
-		border-style: solid;
-		font-size: 18pt;
-	}
-	
-	.propic {
-		width: 50px;
-		height: 50px;
-		display: inline-block;
-		float:left;
-	}
-
-	
 	#login_form {
 		background-color: #800000;
 		width: 480px;
@@ -354,69 +344,31 @@ a:active {
 		margin-top: -90px;
 		padding: 15px 15px 15px 15px;
 	}
-	
-	#header_login {
-		width: 262px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-top: -200px;
-		margin-left: -140px;
-	}
-		
-	#login_title {
-		display:inline-block;
-		margin-left: 30px;
-	}
 }
 
 @media only screen and (max-width: 480px) {
 	
-	header {
-		height: 146px;
-	}
+	/*header {
+		height: 146px; oppure lo metto nella sidebar?
+	}*/
 	
-	.sidebar {
-		margin-top: 50px;
-		border-style:solid;
-		border-width: 3px;
-		border-color: white;
-		background-color: #600000;
+	#sidebar {
+		margin-top: 146px;
 		}
 		
 	.float_right {
-		font-size: 12pt;
-		text-align:center;
-		width: 100%;
 		border-style: solid;
 		border-width: 3px;
 		border-color: white;
-	}
-		
-	.div_right {
-		background-color: #600000;
-		text-align:center;
-		width: 100%;
-		line-height: 44px;
-	}
-	
-	#div1 {
-		background-color: #600000;
-		text-align: center;
-		width: 100%;
-		height: 44px;
-		line-height: 44px;
 	}
 	
 	.header_writing {
-		border-width: 3px;
-		border-color: white;
-		border-style: solid;
 		font-size: 14pt;
 	}
 	
 	#div_body {
 		margin-top: 30px;
+		margin-left: auto;
 	}
 	
 	#stato {
@@ -430,63 +382,24 @@ a:active {
 		height: 100%;
 	}
 	
-	.propic {
-		width: 50px;
-		height: 50px;
-		display: inline-block;
-		float:left;
-	}
-	
 	#propic {
-		margin-top: 10px;
-		width: 100%;
-	}
-
-	#propic img {
-		display: block;
-		margin: auto;
-		width: 150px;
-		height: 150px;
+		margin-left: 115px;
 	}
 	
 	#label_div {
 		margin-left: -150px;
 	}
 	
-	#label_div input, #label_div label {
+	#label_div input, #label_div label, #login_form input, #login_form label {
 		width: 140px;
-		display: table-cell;
-		font-size: 12pt;
-		margin-bottom: 10px;
-	}
-	
-	div#login_form input, div#login_form label {
-		width: 150px;
-		display: table-cell;
-		font-size: 12pt;
-		margin-bottom: 10px;
 	}
 	
 	#login_form {
 		background-color: #800000;
-		width: 300px;
-		margin-left: -165px;
+		width: 280px;
+		margin-left: -155px;
 		margin-top: -90px;
 		padding: 15px 15px 15px 15px;
-	}
-	
-	#header_login {
-		width: 262px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-top: -200px;
-		margin-left: -140px;
-	}
-		
-	#login_title {
-		display:inline-block;
-		margin-left: 30px;
 	}
 	
 	div#label_div button {
