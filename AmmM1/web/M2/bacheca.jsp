@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="it">
+
+
 <head>
 <title>Bacheca</title>
 <meta charset="UTF-8">
@@ -11,28 +11,8 @@
 <link rel="stylesheet" type="text/css" href="style.css" media="screen">
 </head>
 
-<body>
-<header>
-	<div class="float_right">
-		<div>
-			<div>
-				Marco Meloni
-			</div>
-			<div>
-				<a href="login.html">Logout</a>
-			</div>
-		</div>
-	</div>	
-	<div id="div1" class="header_writing white_border">
-		<a href="descrizione.html">Nerdbook</a>
-	</div>
-	<div class="header_writing div_right white_border">
-		<a href="profilo.html">Profilo</a>
-	</div>
-	<div id="current" class="header_writing div_right white_border">
-		Bacheca
-	</div>
-</header>
+        <c:set var="var" value="Marco" scope="request"/>
+        <jsp:include page="header.jsp"/>
 
 <div id="sidebar" class="white_border">
 	<div id="persone">
@@ -56,7 +36,7 @@
 
 	<div id="post1" class="post white_border">
 		<div class="propic">
-			<img src="img/propic.jpg" alt="pro_pic" title="pro_pic">
+			<img src="img/propic1.jpg" alt="pro_pic" title="pro_pic">
 		</div>
 		<div class="name">
 			Kermit The Frog
@@ -68,7 +48,7 @@
 
 	<div id="post2" class="post white_border">
 		<div class="propic">
-			<img src="img/propic.jpg" alt="pro_pic" title="pro_pic">
+			<img src="img/propic1.jpg" alt="pro_pic" title="pro_pic">
 		</div>
 		<div class="name">
 			Kermit The Frog
@@ -80,7 +60,7 @@
 
 	<div id="post3" class="post white_border">
 		<div class="propic">
-			<img src="img/propic.jpg" alt="pro_pic" title="pro_pic">
+			<img src="img/propic1.jpg" alt="pro_pic" title="pro_pic">
 		</div>
 		<div class="name">
 			Kermit The Frog
@@ -90,5 +70,4 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>
+

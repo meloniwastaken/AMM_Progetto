@@ -24,7 +24,7 @@ public class UserFactory {
         user1.setNome("Kermit");
         user1.setCognome("The Frog");
         user1.setEmail("kermitthefrog@gmail.com");
-        user1.setURLimmagine("img/propic.jpg");
+        user1.setURLimmagine("img/propic1.jpg");
         user1.setFrase("Just because you haven't found your talent yet, doesn't mean you don't have one.");
         user1.setData("21/02/1955");
         user1.setPassword("kermitvomit");
