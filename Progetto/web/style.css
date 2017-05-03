@@ -1,446 +1,424 @@
 body {
-	background-color: #200000;
-	color: white;
+background-color:#200000;
+color:#FFF;
 }
 
 h1 {
-	font-size: 32pt;
-	font-weight: bold;
-	color: red;
+font-size:32pt;
+font-weight:bold;
+color:red;
 }
 
 h2 {
-	font-size: 26pt;
-	font-weight: bold;
-	color: red;
+font-size:26pt;
+font-weight:bold;
+color:red;
 }
 
 h3 {
-	font-size: 22pt;
-	font-weight: normal;
-	color: red;
+font-size:22pt;
+font-weight:normal;
+color:red;
 }
 
 ol {
-	list-style-type: square;
+list-style-type:square;
 }
 
 header {
-	background-color: #600000;
-	font-size: 0; /*annulla il margine aggiuntivo dell'"inline-block"*/
-	margin-right: -8px;
-	margin-top: -8px;
-	margin-left: -8px;
-	font-weight: bold;
-	height: 50px;
+background-color:#600000;
+font-size:0;
+margin-right:-8px;
+margin-top:-8px;
+margin-left:-8px;
+font-weight:bold;
+height:50px;
 }
 
 #propic {
-	margin-top: 10px;
-	width: 100px;
-	height: 100px;
+margin-top:10px;
+width:100px;
+height:100px;
 }
 
 #login {
-	margin-top: 10px;
-	width: 250px;
+margin-top:10px;
+width:250px;
 }
 
 #current {
-	background-color: white;
-	color: red;
-	text-decoration: underline;
-	font-weight: bold;
+background-color:#FFF;
+color:red;
+text-decoration:underline;
+font-weight:bold;
 }
 
 #stato {
-	margin-top: -18px;
-	margin-left: -18px;
-	margin-bottom: 10px;
-	font-size: 14pt;
-	background-color: #600000;
+margin-top:-18px;
+margin-left:-18px;
+margin-bottom:10px;
+font-size:14pt;
+background-color:#600000;
 }
 
 #signup {
-	margin-left: 150px;
+margin-left:150px;
 }
 
-#login {
-	margin-top: 10px;
-	width: 250px;
+#post_form input,#post_form label {
+font-size:14pt;
+width:800px;
 }
 
-#post_form input, #post_form label {
-    font-size: 14pt;
-    width: 800px;
-}
-
-#label_div input, #label_div label, #login_form label, #login_form input {
-	display: table-cell;
-	font-size: 12pt;
-	margin-bottom: 10px;
+#label_div input,#label_div label,#login_form label,#login_form input {
+display:table-cell;
+font-size:12pt;
+margin-bottom:10px;
 }
 
 #div_body {
-	margin-top: 20px;
-	margin-left: 220px;
+margin-top:20px;
+margin-left:220px;
 }
 
 #div1 {
-	text-align: center;
-	height: 44px;
-	line-height: 44px;
-	background-color: #600000;
+text-align:center;
+height:44px;
+line-height:44px;
+background-color:#600000;
 }
 
 #header_login {
-	width: 262px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -200px;
-	margin-left: -140px;
+width:262px;
+position:absolute;
+top:50%;
+left:50%;
+margin-top:-200px;
+margin-left:-140px;
 }
-	
+
 #login_title {
-	display:inline-block;
-	margin-left: 30px;}
+display:inline-block;
+margin-left:30px;
+}
 
 #sidebar {
-	background-color: #600000;
-}	
+background-color:#600000;
+}
 
 .smallpic {
-    width: 25px;
-    height: 25px;
+width:25px;
+height:25px;
 }
 
 .logo {
-	width: 50px;
-	height: 50px;
-	display: inline-block;
-	float: left;
-	margin-right: 20px;
+width:50px;
+height:50px;
+display:inline-block;
+float:left;
+margin-right:20px;
 }
 
 .side_titolo {
-	font-weight:bold;
-	font-size: 14pt;
-	margin-left: 40px;
+font-weight:bold;
+font-size:14pt;
+margin-left:40px;
 }
 
 .amico {
-	font-size: 12pt;
-	margin-left: 40px;
+font-size:12pt;
+margin-left:40px;
 }
 
 .post {
-	margin-bottom: 15px;
-	background-color: #600000;
+margin-bottom:15px;
+background-color:#600000;
 }
 
 .name {
-	margin-left: 10px;
-	margin-bottom: 10px;
-	font-weight: bold;
-	display: inline-block;
-	height: 50px;
-	line-height:50px;
+margin-left:10px;
+margin-bottom:10px;
+font-weight:bold;
+display:inline-block;
+height:50px;
+line-height:50px;
 }
 
 .row {
-	display: table-row;
+display:table-row;
 }
 
 .cell {
-	display: table-cell;
+display:table-cell;
 }
 
 .center {
-	position:absolute;
-	top: 50%;
-	left:50%;
+position:absolute;
+top:50%;
+left:50%;
 }
 
 .white_border {
-	border-style:solid;
-	border-width: 3px;
-	border-color: white;
+border-color:#FFF;
+border-style:solid;
+border-width:3px;
 }
 
 .div_right {
-	background-color: #600000;
-	text-align: center;
-	line-height: 44px;
+background-color:#600000;
+text-align:center;
+line-height:44px;
 }
 
 .float_right {
-	background-color: #600000;
-	font-size: 12pt;
-	text-align: center;
+background-color:#600000;
+font-size:12pt;
+text-align:center;
 }
 
 .header_writing {
-	font-size: 18pt;
+font-size:18pt;
 }
 
 .propic {
-	width: 50px;
-	height: 50px;
-	display: inline-block;
-	float:left;
+width:50px;
+height:50px;
+display:inline-block;
+float:left;
 }
 
 .propic img {
-    width: 50px;
-    height: 50px;
+width:50px;
+height:50px;
 }
 
-input[type=text]:focus, input[type=password]:focus{
-	width: 250px;
-	background-color: lightgrey;
+input[type=text]:focus,input[type=password]:focus {
+width:250px;
+background-color:#D3D3D3;
 }
 
 a:link {
-	color: orange;
-	text-decoration: underline;
+color:orange;
+text-decoration:underline;
 }
 
 a:visited {
-	color: grey;
-	text-decoration: underline;
+color:grey;
+text-decoration:underline;
 }
 
 a:hover {
-	font-weight: bold;
+font-weight:bold;
 }
 
 a:active {
-	color: red;
+color:red;
 }
 
-@media only screen and (min-width: 1024px) {
-		
-	/*header {
-		height: 50px;
-	}*/
-	
-	#login_form button {
-		font-size: 14pt;
-		height: 30pt;
-		width: 100%;
-		max-width: 804px;
-	}
-        
-        #post_form button {
-		font-size: 14pt;
-		height: 30pt;
-		width: 100%;
-	}
-	
-	#propic {
-		margin-left: 10px;
-		float:left;
-	}
-	
-	#label_div input, #label_div label, #login_form label, #login_form input {
-		width: 400px;
-		font-size: 14pt;
-	}
-	
-	#sidebar {
-		float: left;
-		width: 200px;
-		margin-left: -8px; /*attacca la barra alla finestra*/
-	}
-	
-	#div1 {
-		display: inline-block;
-		width: 200px;
-	}
-	
-	.div_right {
-		display: inline-block;
-		width:150px;
-	}
-	
-	.float_right {
-		float: right;
-		display:inline-block;
-		width: 150px;
-		margin-top: 7px;
-	}
-
-	.post img {
-		max-height: 500px;
-		max-width:  500px;
-                display: block;
-	}
-	
-	.input_row {
-		width:146px;
-	}
-	
-	#login_form {
-		background-color: #800000;
-		width: 804px;
-		margin-left: -417px;
-		margin-top: -90px;
-		padding: 15px 15px 15px 15px;
-	}
+/*Inizio media grande*/
+@media only screen and (min-width: 1024px){
+#login_form button {
+font-size:14pt;
+height:30pt;
+width:100%;
+max-width:804px;
 }
 
-@media only screen and (min-width: 480px) and (max-width: 1024px) {
-	
-	/*header {
-		height: 50px;
-	}*/
-	
-	#label_div button {
-		font-size: 14pt;
-		height: 30pt;
-		width: 100%;
-		max-width: 284px;
-		min-width: 232px;
-	}
-	
-	#login_form button {
-		font-size: 14pt;
-		height: 30pt;
-		width: 100%;
-		max-width: 480px;
-	}
-	
-	#propic {
-		margin-left: 10px;
-	}
-	
-	#label_div {
-		margin-left: -160px;
-	}
-	
-	#label_div input, #label_div label {
-		width: 140px;
-	}
-	
-	#login_form input, #login_form label {
-		width: 240px;
-	}
-	
-	#sidebar {
-		float: left;
-		width: 200px;
-		margin-left: -8px; /*attacca la barra alla finestra*/
-	}
-	
-	#div1 {
-		display: inline-block;
-		width: 120px;
-	}
-	
-	.div_right {
-		display: inline-block;
-		width: 120px;
-	}
-	
-	.float_right {
-		float: right;
-		display:inline-block;
-		width: 100px;
-		margin-top: 7px;
-	}
-	
-	.post img {
-		max-height: 200px;
-		max-width:  200px;
-                display: block;
-	}
-	
-	#login_form {
-		background-color: #800000;
-		width: 480px;
-		margin-left: -255px;
-		margin-top: -90px;
-		padding: 15px 15px 15px 15px;
-	}
+#post_form button {
+font-size:14pt;
+height:30pt;
+width:100%;
 }
 
-@media only screen and (max-width: 480px) {
-	
-	/*header {
-		height: 146px; oppure lo metto nella sidebar?
-	}*/
-	
-	#sidebar {
-		margin-top: 146px;
-		}
-		
-	.float_right {
-		border-style: solid;
-		border-width: 3px;
-		border-color: white;
-	}
-	
-	.header_writing {
-		font-size: 14pt;
-	}
-	
-	#div_body {
-		margin-top: 30px;
-		margin-left: auto;
-	}
-	
-	#stato {
-		margin-left: auto;
-	}
-	
-	.post img {
-		max-height: 200px;
-		max-width: 200px;
-                display: block;
-	}
-	
-	#propic {
-		margin-left: 115px;
-	}
-	
-	#label_div {
-		margin-left: -150px;
-	}
-	
-	#label_div input, #label_div label, #login_form input, #login_form label {
-		width: 140px;
-	}
-	
-	#login_form {
-		background-color: #800000;
-		width: 280px;
-		margin-left: -155px;
-		margin-top: -90px;
-		padding: 15px 15px 15px 15px;
-	}
-	
-	div#label_div button {
-		font-size: 14pt;
-		height: 30pt;
-		width: 100%;
-		max-width: 284px;
-		min-width: 232px;
-	}
-	
-	div#login_form button {
-		font-size: 14pt;
-		height: 30pt;
-		width: 100%;
-		max-width: 480px;
-	}
+#propic {
+margin-left:10px;
+float:left;
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+#label_div input,#label_div label,#login_form label,#login_form input {
+width:400px;
+font-size:14pt;
+}
+
+#sidebar {
+float:left;
+width:200px;
+margin-left:-8px;
+}
+
+#div1 {
+display:inline-block;
+width:200px;
+}
+
+.div_right {
+display:inline-block;
+width:150px;
+}
+
+.float_right {
+float:right;
+display:inline-block;
+width:150px;
+margin-top:7px;
+}
+
+.post img {
+max-height:500px;
+max-width:500px;
+display:block;
+}
+
+.input_row {
+width:146px;
+}
+
+#login_form {
+background-color:maroon;
+width:804px;
+margin-left:-417px;
+margin-top:-90px;
+padding:15px;
+}
+}
+/*Fine media "grande"*/
+
+/*Inizio media "medio"*/
+@media only screen and (min-width: 480px) and (max-width: 1024px){
+#label_div button {
+font-size:14pt;
+height:30pt;
+width:100%;
+max-width:284px;
+min-width:232px;
+}
+
+#login_form button {
+font-size:14pt;
+height:30pt;
+width:100%;
+max-width:480px;
+}
+
+#propic {
+margin-left:10px;
+}
+
+#label_div {
+margin-left:-160px;
+}
+
+#label_div input,#label_div label {
+width:140px;
+}
+
+#login_form input,#login_form label {
+width:240px;
+}
+
+#sidebar {
+float:left;
+width:200px;
+margin-left:-8px;
+}
+
+#div1 {
+display:inline-block;
+width:120px;
+}
+
+.div_right {
+display:inline-block;
+width:120px;
+}
+
+.float_right {
+float:right;
+display:inline-block;
+width:100px;
+margin-top:7px;
+}
+
+.post img {
+max-height:200px;
+max-width:200px;
+display:block;
+}
+
+#login_form {
+background-color:maroon;
+width:480px;
+margin-left:-255px;
+margin-top:-90px;
+padding:15px;
+}
+}
+/*Fine media "medio"*/
+
+/*Inizio media "piccolo"*/
+@media only screen and (max-width: 480px){
+#sidebar {
+margin-top:146px;
+}
+
+.float_right {
+border-color:#FFF;
+border-style:solid;
+border-width:3px;
+}
+
+.header_writing {
+font-size:14pt;
+}
+
+#div_body {
+margin-top:30px;
+margin-left:auto;
+}
+
+#stato {
+margin-left:auto;
+}
+
+.post img {
+max-height:200px;
+max-width:200px;
+display:block;
+}
+
+#propic {
+margin-left:115px;
+}
+
+#label_div {
+margin-left:-150px;
+}
+
+#label_div input,#label_div label,#login_form input,#login_form label {
+width:140px;
+}
+
+#login_form {
+background-color:maroon;
+width:280px;
+margin-left:-155px;
+margin-top:-90px;
+padding:15px;
+}
+
+div#label_div button {
+font-size:14pt;
+height:30pt;
+width:100%;
+max-width:284px;
+min-width:232px;
+}
+
+div#login_form button {
+font-size:14pt;
+height:30pt;
+width:100%;
+max-width:480px;
+}
+}
+/*Fine media "piccolo"*/

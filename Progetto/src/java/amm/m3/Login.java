@@ -8,7 +8,6 @@ package amm.m3;
 import amm.m3.Classi.User;
 import amm.m3.Classi.UserFactory;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,48 +21,47 @@ import javax.servlet.http.HttpSession;
 public class Login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            HttpSession session = request.getSession();
-            
-            if(request.getParameter("logout") != null) {
-                session.invalidate();
-                request.getRequestDispatcher("loginForm.jsp").forward(request, response);
-                return;
-            }
-            
-            if(session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)) {
-                request.getRequestDispatcher("Bacheca").forward(request, response);
-                return;
-            }
-            else {
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                if(username!=null && password!=null) {
-                    int loggedUserID = UserFactory.getInstance().getIdByEmailAndPassword(username, password);
-                    
-                    if(loggedUserID != -1) {
-                        User utente = UserFactory.getInstance().getUserById(loggedUserID);
-                        session.setAttribute("loggedIn", true);
-                        session.setAttribute("loggedUserID", loggedUserID);
-                        session.setAttribute("utente",utente);
-                        
-                        if(utente.getNome() == "" || utente.getCognome() == "" || utente.getFrase() == "" || utente.getURLimmagine() == "") {
-                            request.getRequestDispatcher("Profilo").forward(request, response);
-                            return;
-                        }
-                    
-                        request.getRequestDispatcher("Bacheca").forward(request, response);
+        HttpSession session = request.getSession();
+
+        if (request.getParameter("logout") != null) {   /*Se esiste il parametro logout significa che voglio effettuare il logout*/
+            session.invalidate();   /*Distruggo la sessione*/
+            request.getRequestDispatcher("loginForm.jsp").forward(request, response);   /*E torno al Login*/
+            return;
+        }
+
+        if (session != null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)) { /*Se sono già loggato*/
+            request.getRequestDispatcher("Bacheca").forward(request, response); /*Inoltro a Bacheca*/
+            return;
+        } else {    /*Altrimenti, se non sono loggato*/
+            String username = request.getParameter("username"); /*Prendo username (email) e password*/
+            String password = request.getParameter("password");
+            if (username != null && password != null) { /*Se non sono null, e quindi ho inserito qualcosa*/
+                int loggedUserID = UserFactory.getInstance().getIdByEmailAndPassword(username, password);   /*Cerco nella UserFactory l'utente corrispondente ai parametri*/
+
+                if (loggedUserID != -1) {   /*Se l'ho trovato e quindi ha restituito un valore positivo*/
+                    User utente = UserFactory.getInstance().getUserById(loggedUserID);  /*Salvo in User utente l'utente che ha loggato*/
+                    session.setAttribute("loggedIn", true); /*Setto loggedIn in sessione a true così significa che sono loggato*/
+                    session.setAttribute("loggedUserID", loggedUserID); /*Setto loggedUserID in sessione in modo da sapere con chi sono loggato*/
+                    session.setAttribute("utente", utente); /*Setto utente in sessione in modo da avere sempre a disposizione i parametri dell'utente loggato*/
+
+                    if (utente.getNome() == "" || utente.getCognome() == "" || utente.getFrase() == "" || utente.getURLimmagine() == "") { /*Se uno dei parametri dell'utente che logga è vuoto*/
+                        request.getRequestDispatcher("Profilo").forward(request, response); /*Lo ridirigo a Profilo*/
                         return;
                     }
-                    else {
-                        request.setAttribute("invalidData", true);
-                        request.getRequestDispatcher("loginForm.jsp").forward(request, response);
-                        return;
-                    }
+
+                    request.getRequestDispatcher("Bacheca").forward(request, response); /*Altrimenti, se tutti i parametri sono giusti, va alla Bacheca*/
+                    return;
+                } else { /*Altrimenti (se i valori inseriti non corrispondono a nessun utente nella Factory)*/
+                    request.setAttribute("invalidData", true);  /*Setto invalidData a true, in modo da far capire che ci sono dati non validi*/
+                    request.getRequestDispatcher("loginForm.jsp").forward(request, response);   /*E ridirigo a loginForm.jsp*/
+                    return;
                 }
             }
-    request.getRequestDispatcher("loginForm.jsp").forward(request, response);
+        }
+        request.getRequestDispatcher("loginForm.jsp").forward(request, response);   /*Altrimenti, se entro per la prima volta in Login, vado a loginForm.jsp*/
+        return;
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -76,7 +74,7 @@ public class Login extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -90,7 +88,7 @@ public class Login extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -101,7 +99,7 @@ public class Login extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+            return "Short description";
+        } // </editor-fold>
 
 }

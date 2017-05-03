@@ -9,7 +9,7 @@ public class User {
     private String frase;
     private String data;
     private String password;
-    
+
     public User() {
         this.id = 0;
         this.nome = "";
@@ -132,11 +132,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     @Override
     public boolean equals(Object otherUser) {
         if (otherUser instanceof User)
-            if (this.getId() == ((User)otherUser).getId()) return true;
+            if (this.getId() == ((User) otherUser).getId()) return true;
         return false;
     }
 }

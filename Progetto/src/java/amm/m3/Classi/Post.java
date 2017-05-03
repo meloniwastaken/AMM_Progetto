@@ -5,7 +5,7 @@ public class Post {
     private int creatorId; /*Se è >0 allora è di un utente, se è <0 allora è di un gruppo, se è 0 è stato solamente instanziato*/
     private String text;
     private String image;
-    
+
     public Post() {
         this.id = 0;
         this.creatorId = 0;
@@ -68,8 +68,8 @@ public class Post {
     public void setImage(String image) {
         this.image = image;
     }
-    
-    
-    
-    
+
+
+
+
 }

@@ -7,8 +7,6 @@ package amm.m3;
 
 import amm.m3.Classi.Group;
 import amm.m3.Classi.GroupFactory;
-import amm.m3.Classi.Post;
-import amm.m3.Classi.PostFactory;
 import amm.m3.Classi.User;
 import amm.m3.Classi.UserFactory;
 import java.io.IOException;
@@ -21,34 +19,25 @@ import javax.servlet.http.HttpSession;
 
 public class Profilo extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        
-        if(session != null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)){
-            Integer userID = (Integer) session.getAttribute("loggedUserID");
-            User utente = UserFactory.getInstance().getUserById(userID);
-            if(utente != null)
-                request.setAttribute("utente", utente);
+
+        if (session != null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)) { /*Se sono loggato*/
+            Integer userID = (Integer) session.getAttribute("loggedUserID");    /*Salvo in userID l'ID della persona loggata*/
+            User utente = UserFactory.getInstance().getUserById(userID);    /*E in User utente i dati della persona loggata*/
             
-            ArrayList<User> friends = UserFactory.getInstance().getFriendsByUser(utente);
+            if (utente != null) /*Se ho trovato una corrispondenza, e quindi sono effettivamente loggato*/
+                request.setAttribute("utente", utente); /*Setto l'attributo nella request "utente" con utente*/
+
+            ArrayList < User > friends = UserFactory.getInstance().getFriendsByUser(utente);    /*Prendo la lista degli amici*/
             request.setAttribute("friends", friends);
-            ArrayList<Group> groups = GroupFactory.getInstance().getGroupList(utente);
+            ArrayList < Group > groups = GroupFactory.getInstance().getGroupList(utente);   /*e quella dei gruppi dell'utente loggato*/
             request.setAttribute("groups", groups);
-            
-            if(request.getParameter("update") != null)
-            {
-                String aux = request.getParameter("nome");
+
+            if (request.getParameter("update") != null) {   /*Se esiste un parametro update e quindi ho modificato nel form i dati e ho inviato*/
+                String aux = request.getParameter("nome");  /*Prendo tutti i parametri e li setto a utente, che è l'oggetto che uso per mostrare i dati nell'applicazione*/
                 utente.setNome(aux);
                 aux = request.getParameter("cognome");
                 utente.setCognome(aux);
@@ -64,14 +53,14 @@ public class Profilo extends HttpServlet {
                 utente.setData(aux);
                 request.setAttribute("update", true);
             }
-            
+
         }
-        
-        request.getRequestDispatcher("profilo.jsp").forward(request, response);
+
+        request.getRequestDispatcher("profilo.jsp").forward(request, response); /*Reindirizzo infine a profilo.jsp*/
         return;
-            }
-        
-    
+    }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -84,7 +73,7 @@ public class Profilo extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -98,7 +87,7 @@ public class Profilo extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -109,7 +98,7 @@ public class Profilo extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+            return "Short description";
+        } // </editor-fold>
 
-    }
+}
