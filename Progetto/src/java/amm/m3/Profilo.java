@@ -25,19 +25,12 @@ public class Profilo extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session != null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)) { /*Se sono loggato*/
-            Integer userID = (Integer) session.getAttribute("loggedUserID");    /*Salvo in userID l'ID della persona loggata*/
-            User utente = UserFactory.getInstance().getUserById(userID);    /*E in User utente i dati della persona loggata*/
+            User utente = UserFactory.getInstance().getUserById((Integer) session.getAttribute("loggedUserID"));    /*E in User utente i dati della persona loggata*/
             
-            if (utente != null) /*Se ho trovato una corrispondenza, e quindi sono effettivamente loggato*/
-                request.setAttribute("utente", utente); /*Setto l'attributo nella request "utente" con utente*/
+           //if (utente != null) /*Se ho trovato una corrispondenza, e quindi sono effettivamente loggato*/
+            //    request.setAttribute("utente", utente); /*Setto l'attributo nella request "utente" con utente*/
 
             ArrayList < User > friends = UserFactory.getInstance().getFriendsByUser(utente);    /*Prendo la lista degli amici*/
-            /*ArrayList < User > userfriends = new ArrayList<>();
-            while(!friends.isEmpty())
-            {
-                userfriends.add(UserFactory.getInstance().getUserById(friends.get(0)));
-                friends.remove(0);
-            }*/
             request.setAttribute("friends", friends);
             ArrayList < Group > groups = GroupFactory.getInstance().getGroupList(utente);   /*e quella dei gruppi dell'utente loggato*/
             request.setAttribute("groups", groups);
@@ -56,9 +49,21 @@ public class Profilo extends HttpServlet {
                 String frase = request.getParameter("frase");
                 String data = request.getParameter("data");
                 String password = request.getParameter("password");
-                String password_conf = request.getParameter("password_conf");
-                UserFactory.getInstance().updateUser((Integer) session.getAttribute("loggedUserID"),nome,cognome,email,profile_imm,frase,data,password);
-                request.setAttribute("update", true);
+                String password_conf = request.getParameter("passwordconf");
+                if(!nome.equals("") && 
+                   !cognome.equals("") && 
+                   !email.equals("") && 
+                   !profile_imm.equals("") &&
+                   !frase.equals("") && 
+                   !data.equals("") &&
+                   !password.equals("") && 
+                   !password_conf.equals("") && 
+                    password.equals(password_conf))
+                    {UserFactory.getInstance().updateUser((Integer) session.getAttribute("loggedUserID"),nome,cognome,email,profile_imm,frase,data,password);
+                    utente = UserFactory.getInstance().getUserById((Integer) session.getAttribute("loggedUserID")); /*aggiorno i dati*/
+                    session.setAttribute("utente",utente);
+                    request.setAttribute("update", true);}
+                else request.setAttribute("update", false);
             }
 
         }

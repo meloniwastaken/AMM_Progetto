@@ -8,8 +8,7 @@ import amm.m3.Classi.User;
 import amm.m3.Classi.UserFactory;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Collections;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,27 +29,25 @@ public class Bacheca extends HttpServlet {
 
         if (session != null && session.getAttribute("loggedIn") != null && session.getAttribute("loggedIn").equals(true)) { /*Se sono loggato*/
 
-            Integer loggedUserID = (Integer) session.getAttribute("loggedUserID");  /*Salvo in loggedUserID l'ID dell'utente loggato*/
-            User utente = UserFactory.getInstance().getUserById(loggedUserID);  /*e in utente i dati dell'utente loggato*/
+            User utente = UserFactory.getInstance().getUserById((Integer) session.getAttribute("loggedUserID"));  /*e in utente i dati dell'utente loggato*/
             
             if (utente != null) {   /*Se ho trovato corrispondenza nella factory e quindi sono effettivamente loggato*/
                 
-                request.setAttribute("utente", utente); /*Setto gli attributi "utente" e "titolarebacheca" entrambi con utente*/
+                //request.setAttribute("utente", utente); /*Setto gli attributi "utente" e "titolarebacheca" entrambi con utente*/
                 request.setAttribute("titolarebacheca", utente);
                 ArrayList < Post > posts = new ArrayList < > ();    /*Inizializzo un ArrayList di Post*/
 
                 if (request.getParameter("bachecaid") == null) { /*Se non esiste un parametro bachecaid (e quindi sono nella mia bacheca)*/
                     posts = PostFactory.getInstance().getPostList(utente);  /*Prendo la lista dei post dell'utente loggato*/
                 } else {    /*Altrimenti, se esiste*/
-                    User titolarebacheca = new User();  /*Creo un User titolarebacheca*/
-                    titolarebacheca = UserFactory.getInstance().getUserById(Integer.parseInt(request.getParameter("bachecaid")));   /*Ci metto i dati del titolare della bacheca*/
+                    User titolarebacheca = UserFactory.getInstance().getUserById(Integer.parseInt(request.getParameter("bachecaid")));   /*Ci metto i dati del titolare della bacheca*/
                     if(titolarebacheca!=null)
                     {posts = PostFactory.getInstance().getPostList(titolarebacheca); /*Prendo la lista dei post del titolare della bacheca*/
                         request.setAttribute("titolarebacheca", titolarebacheca);}
                     else request.setAttribute("titolarebacheca", null);/*Setto un attributo con i suoi dati*/
                     /*Potrei essere anche nella mia bacheca, in quanto quando posto un nuovo post nella mia bacheca, bachecaid prende il valore dell'ID dell'utente loggato*/
                 }
-                
+                Collections.reverse(posts);
                 request.setAttribute("posts", posts);   /*Setto gli attributi posts con i post da far apparire in bacheca (propri o di un amico)*/
                 ArrayList < User > friends = UserFactory.getInstance().getFriendsByUser(utente);
                 request.setAttribute("friends", friends);
@@ -68,7 +65,7 @@ public class Bacheca extends HttpServlet {
                         {
                             post.setDestinationUser(UserFactory.getInstance().getUserById(Integer.parseInt(request.getParameter("bachecaid")))); /*setto la destinazione come bachecaid*/
                         } 
-                    else post.setDestinationUser((User) session.getAttribute("utente")); /*altrimenti sono nella mia bacheca e lo indirizzo a me stesso*/
+                    else post.setDestinationUser(utente); /*altrimenti sono nella mia bacheca e lo indirizzo a me stesso*/
                     session.setAttribute("post_r", post); /*Sfrutto la sessione per il passaggio del parametro (post_r) (revisione del post)*/
                     request.getRequestDispatcher("bacheca.jsp").forward(request, response); /*Reindirizzo a bacheca.jsp*/
                     return;

@@ -67,9 +67,14 @@
                     <div>
                         <button>Aggiorna</button>
                     </div>
-                    <c:if test="${update != null}">
+                    <c:if test="${update == true}">
                         <div>
                             Aggiornamento riuscito!
+                        </div>
+                    </c:if>
+                    <c:if test="${update == false}">
+                        <div>
+                            Aggiornamento fallito! Ricontrolla i campi!
                         </div>
                     </c:if>
                 </div>

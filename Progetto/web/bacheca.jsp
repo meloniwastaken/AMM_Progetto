@@ -90,6 +90,24 @@
                         Hai scritto sulla tua bacheca
                     </div>
                 </c:if>
+                <div class="post white_border">
+                    <div class="propic">
+                            <img src="${post_r.creatorUser.URLimmagine}" alt="pro_pic" title="pro_pic">
+                    </div>
+                        <div class="name">
+                            <a href="Bacheca?bachecaid=${post_r.creatorUser.id}">${post_r.creatorUser.nome} ${post_r.creatorUser.cognome}</a>
+                        </div>
+                    <c:if test="${post_r.image != ''}">
+                        <div class="post_cont">
+                            <img src="${post_r.image}">
+                        </div>
+                    </c:if>
+                    <c:if test="${post_r.text != ''}">
+                        <div class="post_cont">
+                            ${post_r.text}
+                        </div>
+                    </c:if>
+                </div>
             </c:if>
 
             <c:forEach var="post" items="${posts}">
@@ -98,7 +116,7 @@
                             <img src="${post.creatorUser.URLimmagine}" alt="pro_pic" title="pro_pic">
                     </div>
                         <div class="name">
-                            ${post.creatorUser.nome} ${post.creatorUser.cognome}
+                            <a href="Bacheca?bachecaid=${post.creatorUser.id}">${post.creatorUser.nome} ${post.creatorUser.cognome}</a>
                         </div>
                     <c:if test="${post.image != ''}">
                         <div class="post_cont">
