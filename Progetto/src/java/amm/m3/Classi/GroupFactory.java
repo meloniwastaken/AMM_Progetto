@@ -1,10 +1,16 @@
 package amm.m3.Classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class GroupFactory {
 
     private static GroupFactory singleton;
+    private String connectionString;
 
     public static GroupFactory getInstance() {
         if (singleton == null) {
@@ -43,23 +49,87 @@ public class GroupFactory {
     }
 
     public Group getGroupById(int id) {
-        for (Group gruppo: this.groupList) {
-            if (gruppo.getId() == id) {
-                return gruppo;
+
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                      "select * from gruppo "
+                    + "where id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, id);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                Group current = new Group();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setURLimmagine(res.getString("urlImmagine"));
+                stmt.close();
+                conn.close();
+                return current;
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public ArrayList < Group > getGroupList(User usr) {
+    public ArrayList < Group > getGroupList(User user) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                "SELECT gruppo.id, gruppo.nome, gruppo.urlImmagine FROM gruppo "
+                + "INNER JOIN followgruppo ON gruppo.id = followgruppo.followed "
+                + "WHERE followgruppo.follower = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, user.getId());
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
 
-        int id = usr.getId();
-        ArrayList < Group > returnlist = new ArrayList < > ();
-        for (Group gruppo: this.groupList) {
-            if (gruppo.getUserList().contains(id)) {
-                returnlist.add(gruppo);
+            ArrayList <Group> ret = new ArrayList<>();
+            
+            // ciclo sulle righe restituite
+            while (res.next()) {
+                Group current = new Group();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setURLimmagine(res.getString("urlImmagine"));
+                ret.add(current);
             }
+            
+            stmt.close();
+            conn.close();
+            return ret;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return returnlist;
+        return null;
+        
+    }
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    public String getConnectionString(){
+            return this.connectionString;
     }
 }

@@ -32,25 +32,32 @@ public class Profilo extends HttpServlet {
                 request.setAttribute("utente", utente); /*Setto l'attributo nella request "utente" con utente*/
 
             ArrayList < User > friends = UserFactory.getInstance().getFriendsByUser(utente);    /*Prendo la lista degli amici*/
+            /*ArrayList < User > userfriends = new ArrayList<>();
+            while(!friends.isEmpty())
+            {
+                userfriends.add(UserFactory.getInstance().getUserById(friends.get(0)));
+                friends.remove(0);
+            }*/
             request.setAttribute("friends", friends);
             ArrayList < Group > groups = GroupFactory.getInstance().getGroupList(utente);   /*e quella dei gruppi dell'utente loggato*/
             request.setAttribute("groups", groups);
 
+            if (request.getParameter("delete") != null) {
+                UserFactory.getInstance().deleteUser((Integer) session.getAttribute("loggedUserID"));
+                session.invalidate();
+                request.getRequestDispatcher("Login").forward(request, response);
+            }
+            
             if (request.getParameter("update") != null) {   /*Se esiste un parametro update e quindi ho modificato nel form i dati e ho inviato*/
-                String aux = request.getParameter("nome");  /*Prendo tutti i parametri e li setto a utente, che è l'oggetto che uso per mostrare i dati nell'applicazione*/
-                utente.setNome(aux);
-                aux = request.getParameter("cognome");
-                utente.setCognome(aux);
-                aux = request.getParameter("profile_imm");
-                utente.setURLimmagine(aux);
-                aux = request.getParameter("frase");
-                utente.setFrase(aux);
-                aux = request.getParameter("data");
-                utente.setData(aux);
-                aux = request.getParameter("password");
-                utente.setData(aux);
-                aux = request.getParameter("password_conf");
-                utente.setData(aux);
+                String nome = request.getParameter("nome");  /*Prendo tutti i parametri e li setto a utente, che è l'oggetto che uso per mostrare i dati nell'applicazione*/
+                String cognome = request.getParameter("cognome");
+                String email = request.getParameter("email");
+                String profile_imm = request.getParameter("profile_imm");
+                String frase = request.getParameter("frase");
+                String data = request.getParameter("data");
+                String password = request.getParameter("password");
+                String password_conf = request.getParameter("password_conf");
+                UserFactory.getInstance().updateUser((Integer) session.getAttribute("loggedUserID"),nome,cognome,email,profile_imm,frase,data,password);
                 request.setAttribute("update", true);
             }
 

@@ -8,6 +8,8 @@ import amm.m3.Classi.User;
 import amm.m3.Classi.UserFactory;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author Marco
  */
 public class Bacheca extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -42,13 +44,15 @@ public class Bacheca extends HttpServlet {
                 } else {    /*Altrimenti, se esiste*/
                     User titolarebacheca = new User();  /*Creo un User titolarebacheca*/
                     titolarebacheca = UserFactory.getInstance().getUserById(Integer.parseInt(request.getParameter("bachecaid")));   /*Ci metto i dati del titolare della bacheca*/
-                    posts = PostFactory.getInstance().getPostList(titolarebacheca); /*Prendo la lista dei post del titolare della bacheca*/
-                    request.setAttribute("titolarebacheca", titolarebacheca);   /*Setto un attributo con i suoi dati*/
+                    if(titolarebacheca!=null)
+                    {posts = PostFactory.getInstance().getPostList(titolarebacheca); /*Prendo la lista dei post del titolare della bacheca*/
+                        request.setAttribute("titolarebacheca", titolarebacheca);}
+                    else request.setAttribute("titolarebacheca", null);/*Setto un attributo con i suoi dati*/
                     /*Potrei essere anche nella mia bacheca, in quanto quando posto un nuovo post nella mia bacheca, bachecaid prende il valore dell'ID dell'utente loggato*/
                 }
                 
                 request.setAttribute("posts", posts);   /*Setto gli attributi posts con i post da far apparire in bacheca (propri o di un amico)*/
-                ArrayList < User > friends = UserFactory.getInstance().getFriendsByUser(utente);    /*friends con gli amici dell'utente loggato*/
+                ArrayList < User > friends = UserFactory.getInstance().getFriendsByUser(utente);
                 request.setAttribute("friends", friends);
                 ArrayList < Group > groups = GroupFactory.getInstance().getGroupList(utente);   /*groups con la lista dei gruppi a cui è iscritto l'utente*/
                 request.setAttribute("groups", groups);
@@ -56,10 +60,15 @@ public class Bacheca extends HttpServlet {
                 if (request.getParameter("revision") != null) { /*Se revision non è null, e quindi sto provando ad inserire un post*/
                     request.setAttribute("revision", true); /*Setto un attributo "revision" a true*/
                     Post post = new Post(); /*Creo un nuovo post e ci metto dentro tutto ciò inserito dall'utente loggato*/
-                    post.setCreatorId(loggedUserID);
+                    post.setCreatorUser((User) session.getAttribute("utente")); /*Il creatore è l'attuale utente loggato*/
                     post.setId(posts.size());
                     post.setImage(request.getParameter("img"));
                     post.setText(request.getParameter("text"));
+                    if (request.getParameter("bachecaid") != null) /*Se esiste un bachecaid e quindi sono nella bacheca di un altro (o al limite la mia con id uguale a userid)*/
+                        {
+                            post.setDestinationUser(UserFactory.getInstance().getUserById(Integer.parseInt(request.getParameter("bachecaid")))); /*setto la destinazione come bachecaid*/
+                        } 
+                    else post.setDestinationUser((User) session.getAttribute("utente")); /*altrimenti sono nella mia bacheca e lo indirizzo a me stesso*/
                     session.setAttribute("post_r", post); /*Sfrutto la sessione per il passaggio del parametro (post_r) (revisione del post)*/
                     request.getRequestDispatcher("bacheca.jsp").forward(request, response); /*Reindirizzo a bacheca.jsp*/
                     return;
@@ -67,9 +76,10 @@ public class Bacheca extends HttpServlet {
 
                 if (request.getParameter("confirm") != null) { /*Se confirm non è null, e quindi sto confermando il post da inserire*/
                     request.setAttribute("confirm", true);  /*Setto un attributo "confirm" a true*/
-                    /*posts.add((Post) session.getAttribute("post_r"));*/ /*Aggiungo il post alla lista (da errore nella visualizzazione del post nelle bacheche altrui*/
                     request.setAttribute("post_r", session.getAttribute("post_r")); /*Setto l'attributo post_r nella request e non nella sessione*/
                     session.removeAttribute("post_r");  /*Distruggendolo nella sessione*/
+                    Post post = (Post) request.getAttribute("post_r");
+                    PostFactory.getInstance().insertPost(post);
                     request.getRequestDispatcher("bacheca.jsp").forward(request, response); /*Reindirizzo a bacheca.jsp*/
                     return;
                 }

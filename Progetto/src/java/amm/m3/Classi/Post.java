@@ -2,13 +2,15 @@ package amm.m3.Classi;
 
 public class Post {
     private int id;
-    private int creatorId; /*Se è >0 allora è di un utente, se è <0 allora è di un gruppo, se è 0 è stato solamente instanziato*/
+    private User creatorUser;
+    private User destinationUser;
     private String text;
     private String image;
 
     public Post() {
         this.id = 0;
-        this.creatorId = 0;
+        this.creatorUser = null;
+        this.destinationUser = null;
         this.text = "";
         this.image = "";
     }
@@ -28,17 +30,31 @@ public class Post {
     }
 
     /**
-     * @return the creatorId
+     * @return the creatorUser
      */
-    public int getCreatorId() {
-        return creatorId;
+    public User getCreatorUser() {
+        return creatorUser;
     }
 
     /**
-     * @param creatorId the creatorId to set
+     * @param creatorUser the creatorUser to set
      */
-    public void setCreatorId(int creatorId) {
-        this.creatorId = creatorId;
+    public void setCreatorUser(User creatorUser) {
+        this.creatorUser = creatorUser;
+    }
+    
+    /**
+     * @return the destinationUser
+     */
+    public User getDestinationUser() {
+        return destinationUser;
+    }
+
+    /**
+     * @param destinationUser the destinationUser to set
+     */
+    public void setDestinationUser(User destinationUser) {
+        this.destinationUser = destinationUser;
     }
 
     /**

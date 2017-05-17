@@ -21,7 +21,7 @@
 
     <jsp:include page="sidebar.jsp" />
 
-    <c:if test="${loggedIn!=null}">
+    <c:if test="${loggedIn!=null && titolarebacheca!=null}">
         <div id="div_body">
 
             <jsp:include page="frase.jsp" />
@@ -95,11 +95,11 @@
             <c:forEach var="post" items="${posts}">
                 <div class="post white_border">
                     <div class="propic">
-                        <img src="${titolarebacheca.URLimmagine}" alt="pro_pic" title="pro_pic">
+                            <img src="${post.creatorUser.URLimmagine}" alt="pro_pic" title="pro_pic">
                     </div>
-                    <div class="name">
-                        ${titolarebacheca.nome} ${titolarebacheca.cognome}
-                    </div>
+                        <div class="name">
+                            ${post.creatorUser.nome} ${post.creatorUser.cognome}
+                        </div>
                     <c:if test="${post.image != ''}">
                         <div class="post_cont">
                             <img src="${post.image}">
@@ -115,7 +115,7 @@
 
         </div>
     </c:if>
-    <c:if test="${loggedIn == null}">
+    <c:if test="${loggedIn == null || titolarebacheca == null}">
         <div>
             Accesso Negato
         </div>

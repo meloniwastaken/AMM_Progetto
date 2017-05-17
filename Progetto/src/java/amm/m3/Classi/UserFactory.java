@@ -1,10 +1,16 @@
 package amm.m3.Classi;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserFactory {
 
     private static UserFactory singleton;
+    private String connectionString;
 
     public static UserFactory getInstance() {
         if (singleton == null) {
@@ -82,30 +88,237 @@ public class UserFactory {
     }
 
     public User getUserById(int id) {
-        for (User utente: this.userList) {
-            if (utente.getId() == id) {
-                return utente;
+
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                      "select * from utente "
+                    + "where id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, id);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                User current = new User();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setEmail(res.getString("email"));
+                current.setPassword(res.getString("password"));
+                current.setURLimmagine(res.getString("urlImmagine"));
+                current.setFrase(res.getString("frase"));
+                current.setData(res.getString("data"));
+                stmt.close();
+                conn.close();
+                return current;
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     public int getIdByEmailAndPassword(String email, String password) {
-        for (User utente: this.userList) {
-            if (utente.getEmail().equals(email) && utente.getPassword().equals(password)) {
-                return utente.getId();
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                      "select id from utente "
+                    + "where email = ? and password = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            
+            System.out.println(stmt);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            // ciclo sulle righe restituite
+            if (res.next()) {
+                int id = res.getInt("id");
+                stmt.close();
+                conn.close();
+                return id;
             }
+
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return -1;
+        
     }
-
+    
     public ArrayList < User > getFriendsByUser(User user) {
-        ArrayList < User > returnlist = new ArrayList < > ();
-        for (User utente: this.userList) {
-            if (!(utente.getId() == user.getId())) {
-                returnlist.add(utente);
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                "SELECT utente.id, utente.nome, utente.cognome, utente.email, utente.password, utente.urlImmagine, utente.frase, utente.data FROM utente "
+                + "INNER JOIN followutente ON utente.id = followutente.followed "
+                + "WHERE followutente.follower = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1, user.getId());
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            ArrayList <User> ret = new ArrayList<>();
+            
+            // ciclo sulle righe restituite
+            while (res.next()) {
+                User current = new User();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setEmail(res.getString("email"));
+                current.setPassword(res.getString("password"));
+                current.setURLimmagine(res.getString("urlImmagine"));
+                current.setFrase(res.getString("frase"));
+                current.setData(res.getString("data"));
+                ret.add(current);
             }
+            
+            stmt.close();
+            conn.close();
+            return ret;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return returnlist;
+        return null;
+        
+    }
+    
+    public ArrayList<User> getUserList() {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                "SELECT * FROM utente";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+
+            ArrayList <User> ret = new ArrayList<>();
+            
+            // ciclo sulle righe restituite
+            while (res.next()) {
+                User current = new User();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setEmail(res.getString("email"));
+                current.setPassword(res.getString("password"));
+                current.setURLimmagine(res.getString("urlImmagine"));
+                current.setFrase(res.getString("frase"));
+                current.setData(res.getString("data"));
+                ret.add(current);
+            }
+            
+            stmt.close();
+            conn.close();
+            return ret;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+    
+    public void updateUser(int id, String nome, String cognome, String email, String profile_imm, String frase, String data, String password) {
+        try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = 
+                "UPDATE utente "
+                    + "SET nome = ?, "
+                    + "cognome = ?, "
+                    + "email = ?, "
+                    + "urlImmagine = ?, "
+                    + "frase = ?, "
+                    + "data = ?, "
+                    + "password = ? "
+                    + "WHERE id = ? ";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setString(1, nome);
+            stmt.setString(2, cognome);
+            stmt.setString(3, email);
+            stmt.setString(4, profile_imm);
+            stmt.setString(5, frase);
+            stmt.setString(6, data);
+            stmt.setString(7, password);
+            stmt.setInt(8, id);
+            
+            // Esecuzione query
+            stmt.execute();
+            
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+    
+        public void deleteUser(int id) {
+            try {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = "DELETE FROM utente WHERE id = ?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            // Si associano i valori
+            stmt.setInt(1,id);
+            
+            // Esecuzione query
+            stmt.execute();
+            
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+    }
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+    public String getConnectionString(){
+    	return this.connectionString;
     }
 }

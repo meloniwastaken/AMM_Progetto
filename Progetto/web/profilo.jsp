@@ -40,6 +40,10 @@
                         <input type="text" name="cognome" value="${utente.cognome}" id="cognome">
                     </div>
                     <div class="row">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" value="${utente.email}" id="email">
+                    </div>
+                    <div class="row">
                         <label for="propic">URL Immagine del profilo</label>
                         <input type="text" name="profile_imm" value="${utente.URLimmagine}" id="profile_imm">
                     </div>
@@ -70,6 +74,9 @@
                     </c:if>
                 </div>
             </form>
+                        <form action="Profilo?delete=1" method="post" id="delete">
+                            <button> delete </button>
+                        </form>
 
         </div>
     </c:if>
