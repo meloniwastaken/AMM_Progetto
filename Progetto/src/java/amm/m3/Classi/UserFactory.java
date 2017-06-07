@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserFactory {
 
@@ -211,6 +212,75 @@ public class UserFactory {
         }
         return null;
         
+    }
+    
+    public ArrayList<User> getUserFriends(String subStringUser, int id) {
+        try {
+            ArrayList<User> ret = new ArrayList<>();
+            
+            if("".equals(subStringUser)) return null; /*Se non c'è parametro di ricerca restituisci null*/
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "amm", "amm");
+            
+            String query = null;
+            
+            if(subStringUser.split(" ").length != 1) { /*Se ha messo più parole, le splitto e cambio la query in base a questo*/
+                query = "SELECT * FROM utente WHERE id != ? AND (nome LIKE ? AND cognome LIKE ?)";
+            }
+            else {
+                query = "SELECT * FROM utente WHERE id != ? AND (nome LIKE ? OR cognome LIKE ?)";
+            }
+            
+            PreparedStatement stmt = conn.prepareStatement(query); 
+            stmt.setInt(1, id);
+            if(subStringUser.split(" ").length != 1) { /*Metto maiuscole le prime lettere di nome e cognome*/
+                String[] parts = subStringUser.split("\\s+");
+                parts[0] = parts[0].toLowerCase();
+                parts[1] = parts[1].toLowerCase();
+                parts[0] = parts[0].substring(0, 1).toUpperCase() + parts[0].substring(1);
+                parts[1] = parts[1].substring(0, 1).toUpperCase() + parts[1].substring(1);
+                
+                stmt.setString(2, "%" + parts[0] + "%");
+                stmt.setString(3, "%" + parts[1] + "%");
+            }
+            else {
+                subStringUser = subStringUser.toLowerCase();
+                subStringUser = subStringUser.substring(0, 1).toUpperCase() + subStringUser.substring(1);
+                subStringUser = subStringUser.trim();
+                stmt.setString(2, "%" + subStringUser + "%");
+                stmt.setString(3, "%" + subStringUser + "%");
+            }
+            
+            ResultSet res = stmt.executeQuery();
+
+            if(!res.next()) { /*Chiudo statement e connessione nel caso non ci fossero valori*/
+                stmt.close();
+                conn.close();
+            }
+            else {
+                do {
+                    User current = new User();
+                    current.setId(res.getInt("id"));
+                    current.setNome(res.getString("nome"));
+                    current.setCognome(res.getString("cognome"));
+                    current.setEmail(res.getString("email"));
+                    current.setPassword(res.getString("password"));
+                    current.setURLimmagine(res.getString("urlImmagine"));
+                    current.setFrase(res.getString("frase"));
+                    current.setData(res.getString("data"));
+                    ret.add(current);
+                } while (res.next());
+                
+                stmt.close();
+                conn.close();
+                return ret;
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
     
     public ArrayList<User> getUserList() {
